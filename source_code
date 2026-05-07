@@ -1,4 +1,4 @@
-# Dataset has been taken from https://www.geeksforgeeks.org/machine-learning/dataset-for-linear-regression/
+# Dataset has been taken from    https://www.geeksforgeeks.org/machine-learning/dataset-for-linear-regression/
 
 # import libraries 
 import numpy as np 
