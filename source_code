@@ -57,3 +57,43 @@ plt.legend()
 plt.show()
 
 
+# Function to predict salary for user input
+def predict_salary():
+    try:
+
+        # Take input from user
+        age = float(input("\nEnter the Age: "))
+        
+        # Validate age input
+        if age < 0 or age > 100:
+            print("Please enter a valid age between 0 and 100")
+            return
+        
+        # Reshape input to 2D array (model expects 2D)
+        age_input = np.array([[age]])
+        
+        # Predict salary
+        predicted_salary = model.predict(age_input)[0, 0]
+        
+        # Display result
+        print(f"\n{'='*50}")
+        print(f"Age: {age} years")
+        print(f"Predicted Salary: ${float(predicted_salary):,.2f}")
+        print(f"{'='*50}\n")
+        
+    except ValueError:
+        print("Invalid input! Please enter a numeric value for age.")
+
+# Call the function
+predict_salary()
+
+# Optional: Ask if user wants to predict again
+while True:
+    choice = input("Do you want to predict another salary? (yes/no): ").lower()
+    if choice == 'yes':
+        predict_salary()
+    elif choice == 'no':
+        print("Thank you for using the Salary Predictor!")
+        break
+    else:
+        print("Please enter 'yes' or 'no'")
