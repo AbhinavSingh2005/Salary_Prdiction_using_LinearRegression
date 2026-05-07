@@ -1,1 +1,57 @@
+# import libraries 
+import numpy as np 
+import pandas as pd 
+import matplotlib.pyplot as plt 
+from sklearn.model_selection import train_test_split 
+from sklearn.linear_model import LinearRegression 
+from sklearn.metrics import r2_score 
+
+
+# load the dataset 
+data = pd.read_csv("SalaryData.csv")
+print(data)
+
+
+# making dataframe 
+df = pd.DataFrame(data)
+df
+
+
+# Remove rows with any NaN values
+data = data.dropna()
+
+
+# feature selection 
+X = data[['Age']]
+y = data[['Salary']]
+
+
+# splitting data for training and testing 
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 42)
+
+
+# model creation 
+model = LinearRegression()
+
+print("Model creation successful")
+
+
+# training the model 
+model.fit (X_train, y_train)
+
+
+# predicting values 
+y_pred = model.predict(X_test)
+
+
+# plotting results 
+plt.figure(figsize=(10, 6))
+plt.scatter(X_test, y_test, color = 'blue', label='Actual values')
+plt.plot(X_test, y_pred, color = "red", linewidth=2, label='Predicted values')
+plt.title("Age vs Salary")
+plt.xlabel("Age")
+plt.ylabel("Salary")
+plt.legend()
+plt.show()
+
 
